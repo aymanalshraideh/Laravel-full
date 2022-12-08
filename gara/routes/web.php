@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
@@ -14,19 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // All Listings
-Route::get('/', function () {
-    return view('listings', [
-        'headings' => 'latest listings',
-        'listings' => Listing::all()
-    ]);
-});
+Route::get('/', [ListingController::class,'index']);
+
+
+//Create a new gig
+Route::get('listings/create',[ListingController::class,'create']);
+//store the new gig
+Route::post('listings',[ListingController::class,'store']);
+
 
 // Single Listing
-Route::get('listing/{listing}',function(Listing $listing){
-
-    return view('listing',[
-        
-        'listing' => $listing
-    ]);
-
-});
+Route::get('listing/{listing}',[ListingController::class,'show']);

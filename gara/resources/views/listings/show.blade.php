@@ -1,7 +1,5 @@
 
-@extends('layout')
-
-@section('content')
+<x-layout>
 @include('partials/_search')
 
     
@@ -28,7 +26,7 @@
 
 
             
-            {{-- <x-listing-tags :tagsCsv={{$listing->tags}} /> --}}
+            <x-listing-tags :t="$listing->tags" />
           
 
             <div class="text-lg my-4">
@@ -65,4 +63,4 @@
     </x-card>
 </div>
 
- @endsection   
+</x-layout>

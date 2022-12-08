@@ -1,7 +1,7 @@
-@props(['tagsCsv'])
 
+@props(['t'])
 @php
-    $tags=explode(',',$tagsCsv);
+    $tags=explode(',',$t);
 @endphp
 
 
@@ -9,9 +9,7 @@
   @foreach ($tags as $tag)
       
  
-    <li
-        class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-    >
+    <li class="bg-black text-white rounded-xl px-3 py-1 mr-2">
         <a href="/?tag={{$tag}}">{{$tag}}</a>
     </li>
    @endforeach
