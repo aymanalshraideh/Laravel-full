@@ -1,16 +1,13 @@
-
 @props(['t'])
 @php
-    $tags=explode(',',$t);
+    $tags = explode(',', $t);
 @endphp
 
 
 <ul class="flex">
-  @foreach ($tags as $tag)
-      
- 
-    <li class="bg-black text-white rounded-xl px-3 py-1 mr-2">
-        <a href="/?tag={{$tag}}">{{$tag}}</a>
-    </li>
-   @endforeach
+    @foreach ($tags as $tag)
+        <li class="bg-black text-white rounded-xl px-3 py-1 mr-2">
+            <a href="/?tag={{ $tag }}">{{ $tag }}</a>
+        </li>
+    @endforeach
 </ul>
