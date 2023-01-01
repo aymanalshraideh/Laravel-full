@@ -52,7 +52,7 @@ class ListingController extends Controller
 
         $formFeilds['logo']=$request->file('logo')->store('logos','public');
      }
-
+     $formFeilds['user_id']=auth()->id();
      Listing::create($formFeilds);
         return redirect('/')->with('message', 'Success add Job');
 
@@ -68,6 +68,9 @@ class ListingController extends Controller
      }
      //update listing
     public function update (Request $request,$id){
+        // if($listing->id )
+
+
         $formFeilds=$request->validate([
            'title'=>'required',
            'company'=>'required',
@@ -81,6 +84,7 @@ class ListingController extends Controller
    
            $formFeilds['logo']=$request->file('logo')->store('logos','public');
         }
+        
         $listing=  Listing::where('id', $id)->first();
         $listing->update($formFeilds);
            return back()->with('message', 'Success Updated Successfuly Job!');
@@ -90,6 +94,10 @@ class ListingController extends Controller
         $listing=  Listing::where('id', $id)->first();
         $listing->delete();
         return redirect('/')->with('message', 'Listings Deleted Successfully !');
+       }
+       //Manage Listings 
+       public function manage(){
+        return view('listings.manage',['listings'=>auth()->user()->listing]);
        }
        
     }
